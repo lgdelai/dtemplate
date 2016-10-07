@@ -1,0 +1,76 @@
+﻿>>> (01) <<<
+
+CRIAR BANCO DE DADOS, TABELAS E RELACIONAMENTOS.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Antes de criar o banco de dados é indicado que seja feito um esquema de entidade relacionamento para diminuir a necessidade de efetuar alterações futuras.
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+01 - CRIANDO UM BANCO DE DADOS:
+	
+   A) - Clique na Guia [Base de Dados] > E defina o nome no campo [Nome da base de dados].
+     NÃO USE, acentos, maiusculas ou caracteres especiais.
+     EX.: dtemplatebd
+
+   B) - Em [Agrupamento (Collation)] escolha:
+     [utf8_general_ci] > [Criar].
+
+   C) OBS.: utf8_general_ci é muito mais rápido em comparação e classificação, porque só os tipos de cada carácter como um único valor, isto é, para comparação e seleção, cada carácter é convertido em um único valor numérico e, em seguida, estes valores são comparados.
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+02 - CRIANDO UMA TABELA - INSTRUÇÕES:
+
+   A) - Selecione o banco de dados onde quer criar a tabela > Na guia [Estrutura] no campo [Nome] digite o nome desejado para a tabela.
+     NÃO USE, acentos, maiusculas ou caracteres especiais.
+     ADICIONE, um prefixo de 3 letras e um underline.
+     EX.: dte_user
+
+
+   B) - No campo [Número de colunas] defina quantas colunas "Campos" a tabela terá inicialmente e clique em [Executar].
+     posteriormente será possível adicionar ou excluir estas colunas.
+     EX.: 7
+
+   
+   C) - Agora preencha os dados de cada coluna:
+     * No campo [Nome] digite o nome desejado para a coluna.
+     NÃO USE, acentos, maiusculas ou caracteres especiais.
+     EX.: usu_id, usu_login, etc.
+
+     * No campo [Tipo] o tipo de dados que será armazenado.
+     EX.: INT para inteiros, CHAR para caractere etc.
+
+     * No campo [Tamanho/Valores] a quantidade máxima de caracteres a ser armazenada neste campo.
+
+     * No campo [Padrão/Predefinido] é o valor padrão, quando um novo registro for criado este campo será preenchido automaticamente com  este valor padrão.
+	
+     * No campo [Agrupamento(Collation)] escolha:
+     [utf8_general_ci].
+	
+     * No campo [Atributos] não marque nada.
+
+     * No campo [Nulo] caso marcado, o preenchimento nao será obrigatório no banco de dados e poderá ficar em branco.
+     PORÉM você poderá tornar o preenchimento obrigatório no arquivo HTML/PHP.
+     "Optei por deixar a maioria das opções como [NULO] para evitar mensagens de erro vindas do banco de dados quando algum campo não fosse preenchido ou houver alguma falha durante o desenvolvimento".
+
+     ATENÇÃO, não marcar as chaves primarias como [NULO] pois elas sempre serão preenchidas automaticamente.
+
+     * No campo [Indice] Defina o tipo de Indice dos campos:
+     -- Primary: É a chave primária de um registo, e também o identificador único do registo. Um campo (ou conjunto de campos) sobre o qual seja criado um índice deste      tipo não pode ter qualquer valor repetido, e não pode ter qualquer valor NULL (campo vazio).
+
+     -- Unique: Estas chaves, tal como as Primary Key nunca podem ter valores repetidos. Mas ao contrário das Primary Keys, podem ter registos NULL (vazios).
+
+     -- Index: Permite valores repetidos e valores NULL, estes índices destinam-se a encontrar numa tabela vários registros que partilham um mesmo valor (ou conjunto de valores), e não um único registo, ou para criar listagens ordenadas.
+
+     -- FullText: São uma funcionalidade interessante de vários motores de base de dados. Estes índices permitem-nos obter rapidamente registos que contenham uma determinada palavra de um campo ou conjunto de campos.
+	  
+     * No campo [A_I] Determina de o campo terá autoincremento.
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+03 - 
