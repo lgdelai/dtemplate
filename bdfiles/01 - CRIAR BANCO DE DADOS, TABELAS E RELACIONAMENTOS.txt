@@ -1,6 +1,6 @@
 ﻿>>> (01) <<<
 
-CRIAR BANCO DE DADOS, TABELAS E RELACIONAMENTOS.
+CRIAR BANCO DE DADOS, E TABELA USUÁRIOS.
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -11,42 +11,48 @@ Antes de criar o banco de dados é indicado que seja feito um esquema de entidad
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 01 - CRIANDO UM BANCO DE DADOS:
 	
-   A) - Clique na Guia [Base de Dados] > E defina o nome no campo [Nome da base de dados].
+   A) - Clique no botão [Home] para ir a tela inicial do phpMyAdmin.
+
+     Clique na guia [Base de Dados] e preencha como abaixo:
      NÃO USE, acentos, maiusculas ou caracteres especiais.
-     EX.: dtemplatebd
 
-   B) - Em [Agrupamento (Collation)] escolha:
-     [utf8_general_ci] > [Criar].
-
-   C) OBS.: utf8_general_ci é muito mais rápido em comparação e classificação, porque só os tipos de cada carácter como um único valor, isto é, para comparação e seleção, cada carácter é convertido em um único valor numérico e, em seguida, estes valores são comparados.
+     OBS.: utf8_general_ci é muito mais rápido em comparação e classificação, porque só os tipos de cada carácter como um único valor, isto é, para comparação e seleção, cada carácter é convertido em um único valor numérico e, em seguida, estes valores são comparados.
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+     [Nome da base de dados] dtemplatebd
+     [Agrupamento (Collation)] utf8_general_ci
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+     Clique em [Criar].
 
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-02 - CRIANDO UMA TABELA - INSTRUÇÕES:
+02 - CRIANDO A TABELA USUÁRIOS:
+   A Primeira tabela a ser criada será a tabela dos usuários, ela será a tabela PAI.
+   Esta tabela terá um nome de login que será único, e um email que será a chave primária, o sistema não permitirá dois logins ou emails iguais, o acesso será feito via login ou email.
 
-   A) - Selecione o banco de dados onde quer criar a tabela > Na guia [Estrutura] no campo [Nome] digite o nome desejado para a tabela.
+   A) - Na listagem do lado esquerdo clique no banco de dados que acabou de criar e depois na guia [Estrutura], então preencha como abaixo:
      NÃO USE, acentos, maiusculas ou caracteres especiais.
-     ADICIONE, um prefixo de 3 letras e um underline.
-     EX.: dte_user
+     OBS.: No campo [Nome] adicione um prefixo de 3 letras e um underline, isto é importante para dificultar que o nome das tabelas sejam  descobertos em ataques.
+     E no campo [Número de colunas] defina quantas colunas a tabela terá inicialmente, posteriormente será possível adicionar ou excluir estas colunas.
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+     [Nome] dte_user
+     [Número de colunas] 9
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+     Em seguida clique em: [Executar]
 
 
-   B) - No campo [Número de colunas] defina quantas colunas "Campos" a tabela terá inicialmente e clique em [Executar].
-     posteriormente será possível adicionar ou excluir estas colunas.
-     EX.: 7
+   B) - ATENÇÃO, A tabela ainda não foi criada, para concluir a criação o nome de cada coluna e suas características devem ser preenchidas corretamente, veja as instruções ou pule para o próximo passo onde estão as instruções de preenchimento:
 
-   
-   C) - Agora preencha os dados de cada coluna:
      * No campo [Nome] digite o nome desejado para a coluna.
-     NÃO USE, acentos, maiusculas ou caracteres especiais.
-     EX.: usu_id, usu_login, etc.
+     NÃO USE, acentos, maiusculas ou caracteres especiais e utilise um prefixo que mostre a qual tabela esta coluna pertence.
+     EX.: TABELA: dte_user, COLUNAS: use_id, use_login, use_email. etc.
 
      * No campo [Tipo] o tipo de dados que será armazenado.
      EX.: INT para inteiros, CHAR para caractere etc.
 
      * No campo [Tamanho/Valores] a quantidade máxima de caracteres a ser armazenada neste campo.
 
-     * No campo [Padrão/Predefinido] é o valor padrão, quando um novo registro for criado este campo será preenchido automaticamente com  este valor padrão.
+     * No campo [Padrão/Predefinido] é o valor padrão, se definido, quando um novo registro for criado este campo será preenchido automaticamente com o valor padrão escolhido.
 	
      * No campo [Agrupamento(Collation)] escolha:
      [utf8_general_ci].
@@ -60,9 +66,10 @@ Antes de criar o banco de dados é indicado que seja feito um esquema de entidad
      ATENÇÃO, não marcar as chaves primarias como [NULO] pois elas sempre serão preenchidas automaticamente.
 
      * No campo [Indice] Defina o tipo de Indice dos campos:
-     -- Primary: É a chave primária de um registo, e também o identificador único do registo. Um campo (ou conjunto de campos) sobre o qual seja criado um índice deste      tipo não pode ter qualquer valor repetido, e não pode ter qualquer valor NULL (campo vazio).
+     -- Primary: É a chave primária de um registo, e também o identificador único do registo. Só pode existir uma por tabela.
+     Um campo (ou conjunto de campos) sobre o qual seja criado um índice deste tipo não pode ter qualquer valor repetido, e não pode ter qualquer valor NULL (campo vazio).
 
-     -- Unique: Estas chaves, tal como as Primary Key nunca podem ter valores repetidos. Mas ao contrário das Primary Keys, podem ter registos NULL (vazios).
+     -- Unique: Estas chaves, tal como as Primary Key nunca podem ter valores repetidos. Mas ao contrário das Primary Keys, podem ter apenas 1 registro NULL (vazios) e pode haver mais de uma definida por tabela.
 
      -- Index: Permite valores repetidos e valores NULL, estes índices destinam-se a encontrar numa tabela vários registros que partilham um mesmo valor (ou conjunto de valores), e não um único registo, ou para criar listagens ordenadas.
 
@@ -71,6 +78,129 @@ Antes de criar o banco de dados é indicado que seja feito um esquema de entidad
      * No campo [A_I] Determina de o campo terá autoincremento.
 
 
+   C) - Crie as colunas seguindo as instruções abaixo:
+
+     OBS.: InnoDB funciona mais rápido que MyISAM quando há modificações constantes nos dados, uma vez que este tipo de armazenagem usa a proteção por registros (row locking) e não a proteção por tabelas (table locking) como o faz o MyISAM.  Contudo, em várias situações, InnoDB é mais lento que MyISAM, devido ao fato de que InnoDB funciona com transações. A armazenagem padrão do MySQL é MyISAM. Outro ponto interessante são as restrições de chaves estrangeiras (foreign key constraints) e transações. Estes recursos estão disponíveis apenas no InnoDB, portanto usaremos esta opção.
+
+     ATENÇÃO: Só modifique as opções especificadas abaixo, as demais não devem ser alteradas.
+
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+     [Nome] use_id
+     [Tipo] INT
+     [Tamanho/Valores] 10
+     [Índice] PRIMARY
+     [A_I] Marcado
+
+
+     [Nome] use_login
+     [Tipo] VARCHAR 
+     [Tamanho/Valores] 30
+     [Agrupamento (Collation)] utf8_general_ci
+     [Índice] UNIQUE
+
+
+     [Nome] use_email
+     [Tipo] VARCHAR 
+     [Tamanho/Valores] 60
+     [Agrupamento (Collation)] utf8_general_ci
+     [Índice] UNIQUE
+
+
+     [Nome] use_password
+     [Tipo] VARCHAR 
+     [Tamanho/Valores] 20
+     [Agrupamento (Collation)] utf8_general_ci
+
+
+     [Nome] use_date_reg
+     [Tipo] TIMESTAMP
+     [Tamanho/Valores] 6
+     [Predefinido] NULL
+     [Nulo] Marcado
+     [Comentários] Store registration date
+
+
+     [Nome] use_last_login
+     [Tipo] TIMESTAMP
+     [Tamanho/Valores] 6
+     [Predefinido] NULL
+     [Nulo] Marcado
+     [Comentários] Stores last access
+
+
+     [Nome] use_access_count
+     [Tipo] INT
+     [Tamanho/Valores] 10
+     [Predefinido] NULL
+     [Nulo] Marcado
+     [Comentários] Stores access number
+
+
+     [Nome] use_active
+     [Tipo] TINYINT
+     [Tamanho/Valores] 4
+     [Predefinido] As defined: 0
+     [Nulo] Marcado
+     [Comentários] User inactive = 0, Active = 1
+
+
+     [Nome] use_type
+     [Tipo] TINYINT
+     [Tamanho/Valores] 1
+     [Predefinido] As defined: 1
+     [Nulo] Marcado
+     [Comentários] User admin = 0, Default = 1
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬
+
+
+   D) - Defina as configurações finais da tabela:
+
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬   
+     [Motor de armazenamento] InnoDB
+     [Agrupamento (Collation)] utf8_general_ci            
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬     
+   Clique em [Guarda]	
+
+   
+   E) - Para definir outro campo como chave primaria faça o seguinte:
+     
+     * Selecione a tabela que contem o campo que deseja modificar,
+     * Clique na guia [Estrutura] e Selecione o campo marcando o [V] atrás dele.
+     * Nas opções no rodapé: [Procurar] [Muda] [Elimina] [Primária] [Único] [Índice], clique em:
+     * [Primária] > e CONFIRME.
+     Se tiver dado certo a chave que aparece na frente do campo que acabou de configurar vai mudar de AMARELA para CINZA.
+
+
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-03 - 
+03 - CÓDIGO SQL DE CRIAÇÃO DA TABELA [dte_user]:
+
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬     
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+CREATE TABLE IF NOT EXISTS `dte_user` (
+`use_id` int(10) NOT NULL,
+  `use_login` varchar(30) NOT NULL,
+  `use_email` varchar(60) NOT NULL,
+  `use_password` varchar(20) NOT NULL,
+  `use_date_reg` timestamp(6) NULL DEFAULT NULL COMMENT 'Store registration date',
+  `use_last_login` timestamp(6) NULL DEFAULT NULL COMMENT 'Stores last access',
+  `use_access_count` int(10) DEFAULT NULL COMMENT 'Stores access number',
+  `use_active` tinyint(4) DEFAULT '0' COMMENT 'User inactive = 0, Active = 1',
+  `use_type` int(1) DEFAULT '1' COMMENT 'User admin = 0, Default = 1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE `dte_user`
+ ADD PRIMARY KEY (`use_id`), ADD UNIQUE KEY `use_login` (`use_login`,`use_email`);
+
+
+ALTER TABLE `dte_user`
+MODIFY `use_id` int(10) NOT NULL AUTO_INCREMENT;
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬     
+
+
+
+
+
